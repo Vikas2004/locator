@@ -23,7 +23,7 @@
      <td>Database</td>
      <td>MongoDB</td>
     </tr>
-    <tr>Environment</tr>
-     <td>NodeJS</td>
+    <tr><td>Environment</td><td>nodeJS</td></tr>
+  
   </tbody>
   </table>
