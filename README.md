@@ -22,8 +22,8 @@
    <tr>
      <td>Database</td>
      <td>MongoDB</td>
-     <td>Environment</td>
-     <td>NodeJS</td>
     </tr>
+    <tr>Environment</tr>
+     <td>NodeJS</td>
   </tbody>
   </table>
