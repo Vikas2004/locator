@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
 const MongoClient = require('mongodb').MongoClient  
 
 
-const client = new MongoClient('mongodb+srv://vikas2005:vikas2005@locator.mkp5q.mongodb.net/locator?retryWrites=true&w=majority', { useNewUrlParser: true });
+const client = new MongoClient(process.env.ATLAS_URI, { useNewUrlParser: true });
 client.connect((err, database) => {
   console.log("--goes to db--")
   if (err) return console.log(err);
