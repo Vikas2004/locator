@@ -1,16 +1,11 @@
 
 import './App.css';
+import Treasure from '../src/views/screens/Treasure/treasure'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       
-        <p>
-          This is the home page.
-        </p>
-       
-      </header>
+      <Treasure />
     </div>
   );
 }

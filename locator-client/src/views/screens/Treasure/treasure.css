@@ -1,0 +1,21 @@
+.colorcode1{
+    background-color: yellow;
+    height: 350px;
+    width: 350px;
+}
+
+.colorcode2{
+    background-color: green;
+    height: 350px;
+    width: 350px;
+}
+
+.treasureSection{
+    margin-top: 100px;
+    height: 70vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
