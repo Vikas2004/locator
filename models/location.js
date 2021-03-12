@@ -1,12 +1,12 @@
 const mongoose = require("mongoose")
 
 const LocationSchema = new mongoose.Schema({
-    id: {
-        type: String, 
-        required: true,
-        unique: true,
-        trim: true
-    },
+    // id: {
+    //     type: String, 
+    //     required: true,
+    //     unique: true,
+    //     trim: true
+    // },
     locationName: {
         type: String,
         required: true,
