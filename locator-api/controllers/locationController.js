@@ -40,7 +40,7 @@ app.get('/', async(req,res) =>{
 
 // Get the loaction by Id
 
-app.get('/getLocation/:id', async(req,res) =>{
+app.get('/getLocation/:id', async(req, res) =>{
     try{
         const location = await LocationSchema.findById(req.params.id)
         res.json(location)
@@ -50,6 +50,25 @@ app.get('/getLocation/:id', async(req,res) =>{
     }
 })
 
+
+// Update the location
+
+app.put('/editLocation/:id', async(req, res) =>{
+    const id = parseInt(req.params.id)
+    try{
+        const updateLocation = LocationSchema.updateOne({ _id: id},{
+            $set: {
+                locationName : req.body.locationName,
+            }
+            
+        })
+        res.json(updateLocation)
+       
+    }
+    catch(err){
+        res.send('Error' + err)
+    }
+})
 
 app.delete('/deleteLocation', async (req, res) => {
       LocationSchema.deleteOne(req.body)
