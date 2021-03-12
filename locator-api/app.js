@@ -16,5 +16,5 @@ mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopol
    
  })
 }).catch((e) => {
-  console.log(e,"--eror sjsas")
+  console.log(e,"--error")
 })
