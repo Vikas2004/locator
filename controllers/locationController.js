@@ -8,6 +8,8 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
 app.post('/createLocation', async (req, res) => {
     const location = new LocationSchema({
         locationName: req.body.locationName,
@@ -23,6 +25,19 @@ app.post('/createLocation', async (req, res) => {
                  res.send({ status: 200, response: "Location Create Successfully" });
       } )
 })
+
+// List all the locations
+
+app.get('/getLocation', async(req,res) =>{
+    try{
+        const locations = await LocationSchema.find()
+        res.json(locations)
+    }
+    catch(err){
+        res.send('Error' + err)
+    }
+})
+
 
 
 
