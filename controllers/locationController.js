@@ -13,7 +13,7 @@ app.post('/createLocation', async (req, res) => {
         locationName: req.body.locationName,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        locationType: req.body.locationType,
+        radius: 100,
       });
      location.save(err => {
              if(err) {
@@ -32,7 +32,8 @@ app.delete('/deleteLocation', async (req, res) => {
         let status = err.status || err.statusCode || err.code || 500;
 res.status(status).send({ status, error: err });
      }
-         res.send({ status: 200, response: "Location Create Successfully" });
+         res.send({ status: 200, response: "Location deleted Successfully" });
     })
+
 
 module.exports = app;
