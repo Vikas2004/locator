@@ -9,17 +9,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/createLocation', async (req, res) => {
-    console.log(req.body,"--body is here--")
-
     const location = new LocationSchema({
         locationName: req.body.locationName,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         locationType: req.body.locationType,
       });
-
-      console.log(location,"--details are here00")
-
      location.save(err => {
              if(err) {
                 let status = err.status || err.statusCode || err.code || 500;
