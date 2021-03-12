@@ -47,12 +47,16 @@
 
   - MongoDB
 
+  ## ORM:
+
+  - Mongoose
+
   ## Published Link;
 
   - [App](https://treasure-locator-frontend.herokuapp.com/)
   
   - Locations are based on the circles.
-  
+
 
 
 
