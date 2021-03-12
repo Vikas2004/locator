@@ -11,13 +11,13 @@ var locationController = require('../controllers/locationController')
 //      res.send("get location")
 //  })
 
- router.use('/', locationController)
+ router.use('/location/', locationController.findAll)
   // About page route.
-//   router.get('/createLocation', locationController.createLocation)
+/   router.post('/location//createLocation', locationController.create)
 
-//   router.get('/editLocation', locationController.editLocation)
+  router.put('/location/:locationId', locationController.update)
 
-//   router.get('/deleteLocation', locationController.deleteLocation)
+   router.delete('/location/:locationId', locationController.delete)
 
                  
 
