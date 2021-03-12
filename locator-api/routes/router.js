@@ -13,7 +13,7 @@ var locationController = require('../controllers/locationController')
 
  router.use('/location/', locationController.findAll)
   // About page route.
-/   router.post('/location//createLocation', locationController.create)
+/   router.post('/location/', locationController.create)
 
   router.put('/location/:locationId', locationController.update)
 
