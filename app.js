@@ -3,12 +3,17 @@ var app = express();
 var env = require('dotenv').config()
 // const router = require('./routes/router')
 const mongoose = require("mongoose")
-app.use(require('./routes/router'))
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+var bodyParser = require('body-parser')
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then((res) =>{
    app.listen(3000, function () {
@@ -18,3 +23,5 @@ mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopol
 }).catch((e) => {
   console.log(e,"--error")
 })
+
+app.use(require('./routes/router'))
