@@ -22,6 +22,7 @@ exports.create = (req, res) => {
       });
      location.save(err => {
              if(err) {
+                 console.log(err,"---error shiuld be here---")
                 let status = err.status || err.statusCode || err.code || 500;
         res.status(status).send({ status, error: err });
              }
