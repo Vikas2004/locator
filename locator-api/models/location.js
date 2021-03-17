@@ -3,13 +3,13 @@ const mongoose = require("mongoose")
 const LocationSchema = new mongoose.Schema({
     locationName: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
         trim: true,
     },
     latitude: {
         type: String,
-        required: true,
+        // required: true,
         trim: true
     },
     longitude: {
@@ -19,7 +19,7 @@ const LocationSchema = new mongoose.Schema({
     },
     radius: {
         type: Number,
-        required: true,
+        // required: true,
     }
 })
 
