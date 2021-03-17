@@ -1,20 +1,28 @@
 
 import './treasure.css';
+import React, { Component } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ColorBox from '../../components/ColorBox'
 
-function Treasure() {
-  return (
-    <div>
-      <Header/>
-      <div className="treasureSection">
-      <ColorBox style={{backgroundColor: 'gray'}} />
-      <ColorBox style={{backgroundColor: 'yellow'}} />
+export default class Treasure extends React.Component {
+   
+
+
+
+
+  render(){
+    return (
+      <div>
+        <Header/>
+        <div className="treasureSection">
+        <ColorBox style={{backgroundColor: 'gray'}} />
+        <ColorBox style={{backgroundColor: 'yellow'}} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
+
 }
 
-export default Treasure;
