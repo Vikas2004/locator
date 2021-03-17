@@ -6,11 +6,7 @@ import Footer from '../../components/Footer'
 import ColorBox from '../../components/ColorBox'
 
 export default class Treasure extends React.Component {
-   
-
-
-
-
+  
   render(){
     return (
       <div>
