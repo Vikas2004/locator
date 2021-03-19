@@ -14,7 +14,6 @@ const LocationSchema = new mongoose.Schema({
     },
     longitude: {
         type: String,
-        required: true,
         trim: true
     },
     radius: {
