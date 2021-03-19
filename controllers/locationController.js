@@ -31,6 +31,7 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
+    console.log("--this should hit--")
     LocationSchema.find()
     .then(locations => {
         res.send(locations);
