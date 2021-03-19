@@ -1,19 +1,19 @@
 
 import './location';
-import React, {Component} from 'react'
+import React, {Component, propTypes} from 'react'
 import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompass, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { useHistory, Redirect } from "react-router-dom"
-// import ColorBox from '../../components/ColorBox'
-import { createBrowserHistory } from 'history';
+import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
+
+
 
  class Location extends Component {
  
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       locations: [],
       navigate: false
@@ -47,8 +47,10 @@ import { createBrowserHistory } from 'history';
       .catch(e => {console.log(e,"---error is here---")})
   }
 
-  goToEditPage(){
-   this.props.history.push('/location/save')
+  goToEditPage({context}){
+ 
+    // const { history } = this.props;
+    this.context.router.push('/location/save')
   }
 
   deleteLocation(id){
@@ -72,8 +74,10 @@ import { createBrowserHistory } from 'history';
         {this.state.locations.map(location =>
         <div>
    <li>{location.locationName}</li>
+<Link to="/locations/Edit" params={{ id: location._id }}>
+<FontAwesomeIcon icon={faEdit}    />
+</Link>
 
-<FontAwesomeIcon icon={faEdit} onClick={this.goToEditPage}   />
 
 
            <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteLocation(location._id)} />
@@ -91,4 +95,4 @@ import { createBrowserHistory } from 'history';
 }
 
 
-export default Location;
+export default withRouter(Location);
