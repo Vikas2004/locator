@@ -19,7 +19,7 @@ export default class Location extends Component {
     var BASE_URL = "https://treasure-locator-backend.herokuapp.com/"
     // var BASE_URL = "http://localhost:3001"
     console.log(BASE_URL,"--base url is here--")
-      axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
+      axios.get(BASE_URL + "/location/").then(res => {console.log(res, "---response is here----")
     this.setState({
       locations: res.data
     })
