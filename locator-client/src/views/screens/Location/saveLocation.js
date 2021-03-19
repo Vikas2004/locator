@@ -52,7 +52,7 @@ export default class SaveLocation extends Component {
       longitude: this.state.longitude
     }
     console.log(body,"--body is here--")
-    axios.post('http://localhost:3000/location/', body).then(response => {
+    axios.post('http://localhost:3001/location/', body).then(response => {
       console.log(response,"----response is here---");
     })
     .catch(error => {
