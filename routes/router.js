@@ -10,6 +10,8 @@ router
 
  router.get('/location/', locationController.findAll)
 
+ router.get('/location/about', locationController.show)
+
  router.get('/location/:locationId', locationController.findOne)
 
  router.post('/location/', locationController.create)
