@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-mongoose.connect("mongodb+srv://vikas2005:vikas2005@locator.mkp5q.mongodb.net/locator?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true }).then((res) =>{
-   app.listen(3001, function () {
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then((res) =>{
+   app.listen(process.env.PORT || 3001, function () {
    return "Connected to Database"
    
  })
