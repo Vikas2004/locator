@@ -1,6 +1,6 @@
 # Locator App:
 
-- This application help it's users to find the treasures based on the treasure location and it validates the user location when it matches with the treasure location and confirm it to the user with UI effects. How cool is it right?
+- This application helps its users to find the treasures based on the treasure location and it validates the user location when it matches with the treasure location and confirms it to the user with UI effects. How cool is it, right?
 
 # About the App:
 

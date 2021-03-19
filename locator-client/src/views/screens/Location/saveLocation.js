@@ -52,7 +52,11 @@ export default class SaveLocation extends Component {
       longitude: this.state.longitude
     }
     console.log(body,"--body is here--")
+<<<<<<< HEAD
     axios.post('https://treasure-locator-backend.herokuapp.com/location/', body).then(response => {
+=======
+    axios.post('http://localhost:3001/location/', body).then(response => {
+>>>>>>> 8664cf0baa54517edd409003d58b685367b17d67
       console.log(response,"----response is here---");
     })
     .catch(error => {

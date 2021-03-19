@@ -6,26 +6,43 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompass, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { useHistory } from "react-router-dom"
+import { useHistory, Redirect } from "react-router-dom"
 // import ColorBox from '../../components/ColorBox'
+import { createBrowserHistory } from 'history';
 
-export default class Location extends Component {
+ class Location extends Component {
  
   constructor(){
     super()
     this.state = {
-      locations: []
+      locations: [],
+      navigate: false
     }
     this.getLocation = this.getLocation.bind(this)
+    this.deleteLocation = this.deleteLocation.bind(this)
   }
 
   componentDidMount(){
-    // var BASE_URL = "https://treasure-locator-backend.herokuapp.com/"
+    // // var BASE_URL = "https://treasure-locator-backend.herokuapp.com/"
+    // var BASE_URL = "http://localhost:3000/location/"
+    // console.log(BASE_URL,"--base url is here--")
+    //   axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
+    // this.setState({
+    //   locations: res.data
+    // })
+    // })
+    //   .catch(e => {console.log(e,"---error is here---")})
   
   }
 
+<<<<<<< HEAD
   getLocation(){
     var BASE_URL = "https://treasure-locator-frontend.herokuapp.com/"
+=======
+   getLocation(){
+   
+    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location"
+>>>>>>> 8664cf0baa54517edd409003d58b685367b17d67
     console.log(BASE_URL,"--base url is here--")
       axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
     this.setState({
@@ -36,7 +53,15 @@ export default class Location extends Component {
   }
 
   goToEditPage(){
+   this.props.history.push('/location/save')
+  }
 
+  deleteLocation(id){
+    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location/"
+    axios.delete(BASE_URL + id).then(res => {console.log(res, "---response is here----")
+    this.getLocation()
+    })
+      .catch(e => {console.log(e,"---error is here---")})
   }
 
   //onClick={history.push("/locations/save")} 
@@ -52,12 +77,12 @@ export default class Location extends Component {
         {this.state.locations.map(location =>
         <div>
    <li>{location.locationName}</li>
-{/* <Redirect to="/locations/save/">  */}
-<FontAwesomeIcon icon={faEdit}  />
-{/* </Redirect> */}
 
-         
-           <FontAwesomeIcon icon={faTrashAlt}  />
+<FontAwesomeIcon icon={faEdit} onClick={this.goToEditPage}   />
+
+
+           <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteLocation(location._id)} />
+           
         </div>
            )}
            </ul>
@@ -71,3 +96,4 @@ export default class Location extends Component {
 }
 
 
+export default Location;
