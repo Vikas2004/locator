@@ -16,8 +16,8 @@ export default class Location extends Component {
   }
 
   componentDidMount(){
-    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/"
-    // var BASE_URL = "http://localhost:3001"
+    // var BASE_URL = "https://treasure-locator-backend.herokuapp.com/"
+    var BASE_URL = "http://localhost:3001"
     console.log(BASE_URL,"--base url is here--")
       axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
     this.setState({
@@ -33,6 +33,7 @@ export default class Location extends Component {
       <div>
         <Header/>
         <div style={{display: "flex", alignItems: "center", background: "white", height: "100vh"}}>
+        <i class="far fa-compass"></i>
         <ul style={{fontSize: 20, color: "black", width: "100%"}}>  
         {this.state.locations.map(location =>
            <li>{location.locationName}</li>
