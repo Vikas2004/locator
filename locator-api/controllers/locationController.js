@@ -17,6 +17,9 @@ var LocationSchema = require('../models/location')
 exports.about = (req, res) => {
     res.send("My Name is Vikas")
 }
+exports.show = (req, res) => {
+    res.send("My name is Deekshith Maram")
+}
 
 exports.create = (req, res) => {
     const location = new LocationSchema({
@@ -118,8 +121,4 @@ exports.delete = (req, res) => {
             message: "Could not delete Location with id " + req.params.locationId
         });
     });
-}
-
-exports.show = (req,res) =>{
-
 }
