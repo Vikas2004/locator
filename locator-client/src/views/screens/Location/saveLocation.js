@@ -42,20 +42,20 @@ export default class SaveLocation extends Component {
     this.setState({longitude: event.target.value});
   }
 
-  async handleSubmit(){
+   handleSubmit(){
     const headers = {
       'content-type': 'application/x-www-form-urlencoded',
     }
     const body = {
       locationName: this.state.locationName,
       latitude: this.state.latitude,
-      Longitude: this.state.longitude
+      longitude: this.state.longitude
     }
     console.log(body,"--body is here--")
-   await axios.post('http://localhost:3000/location/', body, { headers }).then(function (response) {
+    axios.post('http://localhost:3000/location/', body).then(response => {
       console.log(response,"----response is here---");
     })
-    .catch(function (error) {
+    .catch(error => {
       console.log(error,"---error is here---");
     });
 
@@ -68,7 +68,7 @@ export default class SaveLocation extends Component {
       <div>
         <Header/>
         <div style={{display: "flex", alignItems: "center", background: "white", height: "100vh"}}>
-        <form onSubmit={this.handleSubmit}>
+        {/* <form> */}
         <label>
           Location Name:
           <input type="text" value={this.state.locationName} onChange={this.handleNameChange} />
@@ -81,8 +81,8 @@ export default class SaveLocation extends Component {
           Longitude:
           <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
         </label>
-        <input type="submit" value="Submit" />
-      </form>
+        <button type="submit" value="Submit" onClick={this.handleSubmit} />
+      {/* </form> */}
         </div>
         
         <Footer />
