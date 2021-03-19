@@ -35,14 +35,8 @@ import { createBrowserHistory } from 'history';
   
   }
 
-<<<<<<< HEAD
   getLocation(){
     var BASE_URL = "https://treasure-locator-frontend.herokuapp.com/"
-=======
-   getLocation(){
-   
-    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location"
->>>>>>> 8664cf0baa54517edd409003d58b685367b17d67
     console.log(BASE_URL,"--base url is here--")
       axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
     this.setState({
