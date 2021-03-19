@@ -35,9 +35,8 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
   
   }
 
-   getLocation(){
-   
-    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location"
+  getLocation(){
+    var BASE_URL = "https://treasure-locator-frontend.herokuapp.com/"
     console.log(BASE_URL,"--base url is here--")
       axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
     this.setState({
