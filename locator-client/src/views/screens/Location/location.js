@@ -52,7 +52,7 @@ import { createBrowserHistory } from 'history';
   }
 
   deleteLocation(id){
-    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location"
+    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location/"
     axios.delete(BASE_URL + id).then(res => {console.log(res, "---response is here----")
     this.getLocation()
     })
