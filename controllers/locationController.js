@@ -14,6 +14,10 @@ var LocationSchema = require('../models/location')
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
+exports.show = (req, res) => {
+    res.send("My name is Deekshith Maram")
+}
+
 exports.create = (req, res) => {
     const location = new LocationSchema({
         locationName: req.body.locationName,
