@@ -15,7 +15,7 @@ var LocationSchema = require('../models/location')
 
 
 exports.show = (req, res) => {
-    res.send("My name is Deekshith Maram")
+    res.send("Deekshith")
 }
 
 exports.create = (req, res) => {
@@ -49,7 +49,8 @@ exports.findAll = (req, res) => {
 
 
 exports.findOne = (req, res) => {
-    LocationSchema.findById(req.params.locationId)
+    console.log(req.params.locationId,"--location id is here--")
+    LocationSchema.findById(req.params._id)
     .then(location => {
         if(!location) {
             return res.status(404).send({
