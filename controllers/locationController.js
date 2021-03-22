@@ -14,6 +14,9 @@ var LocationSchema = require('../models/location')
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
+exports.about = (req, res) => {
+    res.send("My Name is Vikas")
+}
 exports.show = (req, res) => {
     res.send("Deekshith")
 }
@@ -120,4 +123,3 @@ exports.delete = (req, res) => {
         });
     });
 }
-
