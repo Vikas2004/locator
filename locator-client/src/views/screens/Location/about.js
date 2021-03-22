@@ -15,7 +15,7 @@ export default class About extends Component {
   }
 
   componentDidMount(){
-    axios.get('https://treasure-locator-frontend.herokuapp.com/location/about').then(res => {
+    axios.get('//treasure-locator-frontend.herokuapp.com/location/about').then(res => {
         console.log(res,"--response is here--")
         this.setState({text: res.data})
     }).catch(e => {console.log(e,"error is here")})
