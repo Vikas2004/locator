@@ -59,7 +59,7 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
      if(val == query){
        this.state.searchId = index
      }
-     var url = `https://treasure-locator-frontend.herokuapp.com/location/${searchId}` 
+     var url = `https://treasure-locator-backend.herokuapp.com/location/${searchId}` 
     axios.get(url)
       .then(response => {
         console.log(response.data,"search response is here---")
@@ -72,7 +72,7 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
   }
 
   getLocation(){
-    var BASE_URL = "https://treasure-locator-frontend.herokuapp.com/location/"
+    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location/"
     console.log(BASE_URL,"--base url is here--")
       axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
     this.setState({
@@ -90,7 +90,7 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
   }
 
   deleteLocation(id){
-    var BASE_URL = "https://treasure-locator-frontend.herokuapp.com/location/"
+    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location/"
     axios.delete(BASE_URL + id).then(res => {console.log(res, "---response is here----")
     this.getLocation()
     })

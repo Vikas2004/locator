@@ -53,7 +53,7 @@ export default class EditLocation extends Component {
       longitude: this.state.longitude
     }
     console.log(body,"--body is here--")
-    axios.put('http://localhost:3001/locations/', body).then(response => {
+    axios.put('https://treasure-locator-backend.herokuapp.com/locations/', body).then(response => {
       console.log(response,"----response is here---");
     })
     .catch(error => {
