@@ -6,6 +6,8 @@ var router = express.Router();
 var locationController = require('../controllers/locationController')
 
 
+router.get('/location/vikas', locationController.about)
+
  router.get('/location/', locationController.findAll)
 
  router.get('/location/about', locationController.show)
