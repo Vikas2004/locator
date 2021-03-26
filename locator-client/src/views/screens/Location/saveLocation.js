@@ -4,11 +4,12 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import { useHistory } from "react-router-dom";
 // import ColorBox from '../../components/ColorBox'
 import BASE_URL from '../../../constants'
 
 export default class SaveLocation extends Component {
-
+ 
   constructor(){
     super()
   this.state = {
@@ -44,22 +45,23 @@ export default class SaveLocation extends Component {
   }
 
    handleSubmit(){
+  //  const headers = {
+  //     'Content-Type': 'application/x-www-form-urlencoded',
+  //     "Access-Control-Allow-Origin": "*",
+  // }
     const body = {
       locationName: this.state.locationName,
       latitude: this.state.latitude,
       longitude: this.state.longitude
     }
-    const url = BASE_URL 
-    axios.post(url, body).then(response => {
-      console.log(response,"----response is here---");
-    })
-    .catch(error => {
-      console.log(error,"---error is here---");
-    });
-
-  };
+  axios.post("http://localhost:3001/location/", body).then(res =>{
+    console.log(res,"--response is here--")
+    this.props.history.push('/');
+  }
   
-
+  )
+   .catch(e => {console.log(e, "---error is here---")})
+}
 
   render(){
     return (
@@ -79,7 +81,7 @@ export default class SaveLocation extends Component {
           Longitude:
           <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
         </label>
-        <button type="submit" value="Submit" onClick={this.handleSubmit} />
+        <button  onClick={this.handleSubmit} />
       {/* </form> */}
         </div>
         

@@ -46,7 +46,7 @@ import TableView from '../../components/Table'
     }, () => {
       if (this.state.query && this.state.query.length > 1) {
         if (this.state.query.length % 2 === 0) {
-          this.getInfo()
+          // this.getInfo()
         }
       } 
     })
@@ -78,9 +78,9 @@ import TableView from '../../components/Table'
     console.log(url,"--base url is here--")
       axios.get(url).then(res => {console.log(res, "---response is here----")
     this.setState({
-      locations: res.data
+      locations: res.data.data
     })
-    console.log(res.data,"--data is here--")
+    console.log(this.state.locations,"--data is here--")
     })
       .catch(e => {console.log(e,"---error is here---")})
   }
@@ -105,34 +105,21 @@ import TableView from '../../components/Table'
   render(){
     const {locations} = this.state
     return (
-      <div>
+  <div>
         <Header/>
-        <div style={{display: "flex", alignItems: "center", background: "white", height: "100vh"}}>
-          <TableView locations={locations} />
-        {/* <form>
+        <div style={{display: "flex", flexDirection:"column", alignItems: "center", background: "white", height: "90vh"}}>  
         <input
+          style={{marginTop: "16px", alignSelf: "flex-end", marginRight:"16px"}}
           placeholder="Search"
           ref={input => this.search = input}
-          onChange={this.handleInputChange}
+          // onChange={this.handleInputChange}
         />
-        <p>{this.state.query}</p>
-        </form>
-        <FontAwesomeIcon icon={faCompass} onClick={this.getLocation} />
-        <ul style={{fontSize: 20, color: "black", width: "100%"}}>  
-        {this.state.locations.map(location =>
-        <div>
-   <li>{location.locationName}</li>
-<Link to="/locations/Edit" params={{ id: location._id }}>
-<FontAwesomeIcon icon={faEdit}    />
-</Link>
-           <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteLocation(location._id)} />
-           
+        {/* </div> */}
+        <div style={{display:'flex', height:"70vh", marginTop:"3%", width: "80%" }}>
+        <TableView  locations={locations} />
         </div>
-           )}
-           </ul> */}
-        </div>
-        
-        <Footer />
+      </div>
+      <Footer />
       </div>
     );
   }

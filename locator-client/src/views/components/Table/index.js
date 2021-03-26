@@ -19,7 +19,7 @@ function TableView({locations}) {
       </tr>
     </thead>
     <tbody>
-  {locations.map((item, index) => {
+  {locations && locations.map((item, index) => {
       return(
 <tr key={index}>
       <td>{index + 1}</td>
@@ -33,7 +33,7 @@ function TableView({locations}) {
    </td>
   <td>
 
- <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteLocation(item._id)} />
+ <FontAwesomeIcon icon={faTrashAlt}  />
 
   </td>
 </tr>
