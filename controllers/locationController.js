@@ -22,27 +22,25 @@ exports.show = (req, res) => {
 }
 
 exports.create = (req, res) => {
+    console.log("cerate", req.url)
     const location = new LocationSchema({
         locationName: req.body.locationName,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         radius: 100,
       });
-     location.save(err => {
-             if(err) {
-                 console.log(err,"---error shiuld be here---")
-                let status = err.status || err.statusCode || err.code || 500;
-        res.status(status).send({ status, error: err });
-             }
-                 res.send({ status: 200, response: "Location Create Successfully" });
-      } )
+    location.save().then(res.send({messgae: "Location Created Successfully"}))
+    .catch(e => { res.status(500).send({
+        message: err.message || "Something wrong while retrieving locations."
+    });})
 }
+
 
 exports.findAll = (req, res) => {
     console.log("--this should hit--")
     LocationSchema.find()
     .then(locations => {
-        res.send(locations);
+        res.send({data: locations});
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Something wrong while retrieving locations."

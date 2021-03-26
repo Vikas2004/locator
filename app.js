@@ -21,7 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-console.log(process.env.ATLAS_URI,"--string is here--")
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then((res) =>{
    app.listen(process.env.PORT || 3001, function () {
    return "Connected to Database"
