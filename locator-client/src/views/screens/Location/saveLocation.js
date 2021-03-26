@@ -5,6 +5,7 @@ import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 // import ColorBox from '../../components/ColorBox'
+import BASE_URL from '../../../constants'
 
 export default class SaveLocation extends Component {
 
@@ -43,16 +44,13 @@ export default class SaveLocation extends Component {
   }
 
    handleSubmit(){
-    const headers = {
-      'content-type': 'application/x-www-form-urlencoded',
-    }
     const body = {
       locationName: this.state.locationName,
       latitude: this.state.latitude,
       longitude: this.state.longitude
     }
-    console.log(body,"--body is here--")
-    axios.post('https://treasure-locator-backend.herokuapp.com/location/', body).then(response => {
+    const url = BASE_URL 
+    axios.post(url, body).then(response => {
       console.log(response,"----response is here---");
     })
     .catch(error => {

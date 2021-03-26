@@ -7,8 +7,8 @@ import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompass, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
-
-
+import { BASE_URL } from "../../../constants"
+import TableView from '../../components/Table'
 
  class Location extends Component {
  
@@ -26,6 +26,7 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
   }
 
   componentDidMount(){
+    this.getLocation()
     // // var BASE_URL = "https://treasure-locator-backend.herokuapp.com/"
     // var BASE_URL = "http://localhost:3000/location/"
     // console.log(BASE_URL,"--base url is here--")
@@ -53,13 +54,14 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
 
   getInfo = () => {
     const {query, searchId} = this.state
-   
+    
    this.state.results.forEach(function(val,index) { 
      console.log(val, index, "--value and index are here--")
      if(val == query){
        this.state.searchId = index
      }
-     var url = `https://treasure-locator-backend.herokuapp.com/location/${searchId}` 
+     var url = BASE_URL+`${searchId}` 
+     console.log(url, "url is here")
     axios.get(url)
       .then(response => {
         console.log(response.data,"search response is here---")
@@ -72,13 +74,13 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
   }
 
   getLocation(){
-    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location/"
-    console.log(BASE_URL,"--base url is here--")
-      axios.get(BASE_URL).then(res => {console.log(res, "---response is here----")
+    var url = BASE_URL
+    console.log(url,"--base url is here--")
+      axios.get(url).then(res => {console.log(res, "---response is here----")
     this.setState({
       locations: res.data
     })
-    console.log()
+    console.log(res.data,"--data is here--")
     })
       .catch(e => {console.log(e,"---error is here---")})
   }
@@ -90,8 +92,8 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
   }
 
   deleteLocation(id){
-    var BASE_URL = "https://treasure-locator-backend.herokuapp.com/location/"
-    axios.delete(BASE_URL + id).then(res => {console.log(res, "---response is here----")
+    var url = BASE_URL + id
+    axios.delete(url).then(res => {console.log(res, "---response is here----")
     this.getLocation()
     })
       .catch(e => {console.log(e,"---error is here---")})
@@ -101,11 +103,13 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
 
 
   render(){
+    const {locations} = this.state
     return (
       <div>
         <Header/>
         <div style={{display: "flex", alignItems: "center", background: "white", height: "100vh"}}>
-        <form>
+          <TableView locations={locations} />
+        {/* <form>
         <input
           placeholder="Search"
           ref={input => this.search = input}
@@ -121,14 +125,11 @@ import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
 <Link to="/locations/Edit" params={{ id: location._id }}>
 <FontAwesomeIcon icon={faEdit}    />
 </Link>
-
-
-
            <FontAwesomeIcon icon={faTrashAlt} onClick={() => this.deleteLocation(location._id)} />
            
         </div>
            )}
-           </ul>
+           </ul> */}
         </div>
         
         <Footer />

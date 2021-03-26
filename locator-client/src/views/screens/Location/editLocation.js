@@ -5,6 +5,8 @@ import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useParams } from 'react-router';
+import  BASE_URL  from '../../../constants'
+
 // import ColorBox from '../../components/ColorBox'
 
 export default class EditLocation extends Component {
@@ -53,7 +55,7 @@ export default class EditLocation extends Component {
       longitude: this.state.longitude
     }
     console.log(body,"--body is here--")
-    axios.put('https://treasure-locator-backend.herokuapp.com/locations/', body).then(response => {
+    axios.put(BASE_URL, body).then(response => {
       console.log(response,"----response is here---");
     })
     .catch(error => {
