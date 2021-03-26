@@ -51,12 +51,23 @@
 
   - Mongoose
 
-  ## Published Link;
+  ## Published Link:
 
   - [App](https://treasure-locator-frontend.herokuapp.com/)
   
   - Locations are based on the circles.
 
+## Running the app Locally:
 
+- Clone the repo down to your local machine.
+- Open the project using Visual Studio Code .
+- As the project is divided into front-end(locator-client) and beck-end(locator-api) they both have to be started sperately using the following command ```npm run start```.
+- **Note**: If you wish to run the app locally you will have to change the BASE_URL to local host in he constants.js file which is in the locator-client file.
+
+## References:
+
+https://adampaxton.com/how-to-deploy-to-multiple-heroku-apps-from-the-same-git-repository/
+https://betterprogramming.pub/how-to-deploy-multiple-apps-under-a-single-github-repository-to-heroku-f6177489d38
+https://react-bootstrap.github.io/components/navbar/
 
 
