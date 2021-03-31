@@ -4,7 +4,9 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import isValidCoordinates from 'is-valid-coordinates';
 import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
+import { validationLatitudeLongitude } from "validation-latitude-longitude";
 
 class SaveLocation extends Component {
  
@@ -49,11 +51,12 @@ class SaveLocation extends Component {
       longitude: this.state.longitude
     }
 
-    var reg = new RegExp("^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}");
+    var reg = new RegExp("([+-]?\d+\.?\d+)\s*,\s*([+-]?\d+\.?\d+)");
 
     if(body.locationName !== "" && body.latitude !== "" && body.longitude !== ""){
+      console.log(body.latitude,body.longitude)
       if(typeof body.locationName === 'string'){
-        if(reg.test(body.latitude) && reg.test(body.longitude) ){
+        if(validationLatitudeLongitude.latitude(body.latitude), validationLatitudeLongitude.longitude(body.longitude)){
           axios.post("http://localhost:3001/location/", body).then(res =>{
             this.props.history.push('/locations/');
           }
