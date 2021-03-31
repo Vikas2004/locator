@@ -1,12 +1,14 @@
 
 import './location';
 import React, {Component} from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { BASE_URL } from "../../../constants"
 import TableView from '../../components/Table'
-import { useHistory, withRouter, Redirect, Link } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
  class Location extends Component {
  
@@ -39,7 +41,7 @@ import { useHistory, withRouter, Redirect, Link } from "react-router-dom"
   }
 
     getInfo(val){
-    const {query, locations, searchId} = this.state
+    const {locations, searchId} = this.state
     locations.forEach(location => {
       console.log(val,"---ahhaaaaa")
       if(location.locationName == val){
@@ -81,7 +83,7 @@ import { useHistory, withRouter, Redirect, Link } from "react-router-dom"
 
   deleteLocation(id){
     var url = BASE_URL + id
-    axios.delete(url).then(res => {console.log(res, "---response is here----")
+    axios.delete(url).then(res => {toast("Location Deleted Successfully")
     this.getLocation()
     })
       .catch(e => {console.log(e,"---error is here---")})
@@ -97,7 +99,7 @@ import { useHistory, withRouter, Redirect, Link } from "react-router-dom"
         <Header/>
         <div style={{display: "flex", flexDirection:"column", justifyContent: "space-between", background: "white", height: "90vh"}}>  
         <div>
-
+        <ToastContainer  />
         <input
           style={{marginTop: "16px", alignSelf: "flex-end", marginRight:"16px"}}
           placeholder="Search"

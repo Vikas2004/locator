@@ -48,12 +48,28 @@ class SaveLocation extends Component {
       latitude: this.state.latitude,
       longitude: this.state.longitude
     }
-  axios.post("http://localhost:3001/location/", body).then(res =>{
-    console.log(res,"--response is here--")
-    this.props.history.push('/');
-  }
-  )
-   .catch(e => {console.log(e, "---error is here---")})
+
+    var reg = new RegExp("^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}");
+
+    if(body.locationName !== "" && body.latitude !== "" && body.longitude !== ""){
+      if(typeof body.locationName === 'string'){
+        if(reg.test(body.latitude) && reg.test(body.longitude) ){
+          axios.post("http://localhost:3001/location/", body).then(res =>{
+            this.props.history.push('/locations/');
+          }
+          )
+           .catch(e => {console.log(e, "---error is here---")})
+        }else{
+          console.log("Please Enter valid coordinates")
+        }
+      }else{
+        console.log("Location name should be string")
+      } 
+    }else{
+      console.log("Please fill all fields")
+    }
+
+
 }
 
   render(){
@@ -64,7 +80,7 @@ class SaveLocation extends Component {
         {/* <form> */}
         <label>
           Location Name:
-          <input style={{border: "0px 0px 0px 0px"}} type="text" value={this.state.locationName} onChange={this.handleNameChange} />
+          <input type="text" style={{border: "0px 0px 0px 0px"}} type="text" value={this.state.locationName} onChange={this.handleNameChange} />
         </label>
         <label>
           Latitude:
