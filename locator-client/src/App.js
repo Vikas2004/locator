@@ -19,7 +19,7 @@ function App() {
       <Route path="/locations/vikas" component={vikas} exact/>
       <Route path="/locations/save" component={SaveLocation} exact />
       <Route path="/locations/about" component={About} exact />
-      <Route path="/locations/edit" component={EditLocation} exact />
+      <Route path='/locations/edit/:locationId' component={EditLocation} exact />
       <Route component={NotFound} />
       </Switch>
     </div>

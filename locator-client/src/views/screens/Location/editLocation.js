@@ -11,8 +11,8 @@ import  BASE_URL  from '../../../constants'
 
 export default class EditLocation extends Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
   this.state = {
     locationName: '',
     latitude: '',
@@ -25,7 +25,14 @@ export default class EditLocation extends Component {
   }
 
   componentDidMount(){
-  
+    const search = this.props.match.params.locationId;
+    console.log(search,"--location id is here--")
+    const url = `http:localhost:3001/location/${search}`
+    console.log(url,"---url is here---")
+    axios.get(url)
+    .then(res => console.log(res,"---response is here--"))
+    .catch(e=> {console.log(e,"--error ishere---")})
+
   }
 
   handleNameChange(event) {
@@ -84,7 +91,7 @@ export default class EditLocation extends Component {
           Longitude:
           <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
         </label>
-        <button type="submit" value="Submit" onClick={this.handleSubmit} />
+        <button type="submit" value="Submit" onClick={() => {this.handleSubmit()}}/>
       {/* </form> */}
         </div>
         

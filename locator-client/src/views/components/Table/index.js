@@ -1,11 +1,10 @@
 
 // import  './header.css'
-import {Link} from 'react'
+
 import Table from 'react-bootstrap/Table'
-import logo from '../../../../src/Favicon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCompass, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { useHistory, withRouter, Redirect, Route } from "react-router-dom"
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { withRouter, Redirect, Route } from "react-router-dom"
 
 
 function TableView({locations, deleteLoc, editLoc}) {
@@ -32,7 +31,7 @@ function TableView({locations, deleteLoc, editLoc}) {
   <td>
  
   <Route render={({ history}) => (
-   <FontAwesomeIcon icon={faEdit} onClick={() => { history.push('/locations/edit') }}   />       
+   <FontAwesomeIcon icon={faEdit} onClick={() => {window.location.href = `/locations/edit/${item._id}`}}  />       
   )} />
    </td>
   <td>
