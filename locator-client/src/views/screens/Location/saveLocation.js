@@ -9,6 +9,7 @@ import isValidCoordinates from 'is-valid-coordinates';
 import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import { validationLatitudeLongitude } from "validation-latitude-longitude";
+import {BASE_URL} from '../../../constants'
 
 class SaveLocation extends Component {
  
@@ -59,7 +60,7 @@ class SaveLocation extends Component {
       console.log(body.latitude,body.longitude)
       if(typeof body.locationName === 'string'){
         if(validationLatitudeLongitude.latitude(body.latitude), validationLatitudeLongitude.longitude(body.longitude)){
-          axios.post("http://localhost:3001/location/", body).then(res =>{
+          axios.post(BASE_URL, body).then(res =>{
             this.props.history.push('/locations/');
           }
           )

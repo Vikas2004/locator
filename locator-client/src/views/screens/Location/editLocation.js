@@ -27,9 +27,6 @@ export default class EditLocation extends Component {
 
   componentDidMount(){
     const search = this.props.match.params.locationId;
-    console.log(search,"--location id is here--")
-    const url = `http:localhost:3001/location/${search}`
-    console.log(BASE_URL ,"---url is here---")
     axios.get(BASE_URL + search)
     .then(res => {
       console.log(res,"--respinse")
