@@ -5,7 +5,10 @@ import Table from 'react-bootstrap/Table'
 import logo from '../../../../src/Favicon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompass, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-function TableView({locations}) {
+import { useHistory, withRouter, Redirect, Route } from "react-router-dom"
+
+
+function TableView({locations, deleteLoc, editLoc}) {
   return (
     <Table striped bordered hover>
     <thead>
@@ -27,13 +30,14 @@ function TableView({locations}) {
   <td>{item.latitude}</td>
   <td>{item.longitude}</td>
   <td>
-{/* {item._id && <Link to="/locations/Edit" params={{id: item._id}}> */}
-  <FontAwesomeIcon icon={faEdit}    />        
-      {/* </Link> } */}
+ 
+  <Route render={({ history}) => (
+   <FontAwesomeIcon icon={faEdit} onClick={() => { history.push('/locations/edit') }}   />       
+  )} />
    </td>
   <td>
 
- <FontAwesomeIcon icon={faTrashAlt}  />
+ <FontAwesomeIcon icon={faTrashAlt} onClick={() => {deleteLoc(item._id)}}  />
 
   </td>
 </tr>
@@ -43,4 +47,4 @@ function TableView({locations}) {
   );
 }
 
-export default TableView;
+export default withRouter(TableView);

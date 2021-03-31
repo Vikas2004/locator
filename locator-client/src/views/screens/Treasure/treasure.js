@@ -14,6 +14,9 @@ export default class Treasure extends React.Component {
         <div className="treasureSection">
         <ColorBox style={{backgroundColor: 'gray'}} />
         <ColorBox style={{backgroundColor: 'yellow'}} />
+        <a href="/locations/">
+          Go to Locations
+        </a>
         </div>
         <Footer />
       </div>

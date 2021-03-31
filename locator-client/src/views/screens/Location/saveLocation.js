@@ -4,11 +4,9 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-import { useHistory } from "react-router-dom";
-// import ColorBox from '../../components/ColorBox'
-import BASE_URL from '../../../constants'
+import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
 
-export default class SaveLocation extends Component {
+class SaveLocation extends Component {
  
   constructor(){
     super()
@@ -45,10 +43,6 @@ export default class SaveLocation extends Component {
   }
 
    handleSubmit(){
-  //  const headers = {
-  //     'Content-Type': 'application/x-www-form-urlencoded',
-  //     "Access-Control-Allow-Origin": "*",
-  // }
     const body = {
       locationName: this.state.locationName,
       latitude: this.state.latitude,
@@ -58,7 +52,6 @@ export default class SaveLocation extends Component {
     console.log(res,"--response is here--")
     this.props.history.push('/');
   }
-  
   )
    .catch(e => {console.log(e, "---error is here---")})
 }
@@ -67,11 +60,11 @@ export default class SaveLocation extends Component {
     return (
       <div>
         <Header/>
-        <div style={{display: "flex", alignItems: "center", background: "white", height: "100vh"}}>
+        <div style={{display: "flex", flexDirection:"column", alignItems: "center", background: "white", height: "100vh"}}>
         {/* <form> */}
         <label>
           Location Name:
-          <input type="text" value={this.state.locationName} onChange={this.handleNameChange} />
+          <input style={{border: "0px 0px 0px 0px"}} type="text" value={this.state.locationName} onChange={this.handleNameChange} />
         </label>
         <label>
           Latitude:
@@ -81,7 +74,7 @@ export default class SaveLocation extends Component {
           Longitude:
           <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
         </label>
-        <button  onClick={this.handleSubmit} />
+        <button  onClick={this.handleSubmit}>Save</button>
       {/* </form> */}
         </div>
         
@@ -92,4 +85,5 @@ export default class SaveLocation extends Component {
  
 }
 
+export default withRouter(SaveLocation)
 
