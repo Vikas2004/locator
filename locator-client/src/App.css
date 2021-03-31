@@ -13,6 +13,15 @@
   }
 }
 
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: blue
+}
+input:focus {
+  border-color: green
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

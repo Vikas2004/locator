@@ -3,6 +3,7 @@ import './location';
 import React, {Component} from 'react'
 import axios from 'axios'
 import Header from '../../components/Header'
+import { ToastContainer, toast } from 'react-toastify';
 import Footer from '../../components/Footer'
 import isValidCoordinates from 'is-valid-coordinates';
 import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
@@ -65,12 +66,15 @@ class SaveLocation extends Component {
            .catch(e => {console.log(e, "---error is here---")})
         }else{
           console.log("Please Enter valid coordinates")
+          toast.warning("Please Enter valid coordinates")
         }
       }else{
         console.log("Location name should be string")
+        toast.warning("Location name should be string")
       } 
     }else{
       console.log("Please fill all fields")
+      toast.warning("Please fill all fields")
     }
 
 
@@ -81,28 +85,22 @@ class SaveLocation extends Component {
     return (
       <div>
         <Header/>
-        <div style={{display: "flex", flexDirection:"column", alignItems: "center", background: "white", height: "100vh"}}>
+        <div style={{display: "flex", flexDirection:"column", alignItems: "center", background: "white", height: "100vh", justifyContent: "center"}}>
         {/* <form> */}
-        <div class="card shadow p-3 mb-5 bg-white rounded" style={ {left:'10%',top: '40%',transform: 'translate(-50%, -50%)',paddingTop: "10vh",
-        paddingBottom: "10vh",
-        paddingRight: "10vw",
-        paddingLeft: "10vw",
-        
-        }}>
+        <ToastContainer />
+        <h4>Add Location</h4>
+        <div class="card shadow mb-5 bg-white rounded" style={{padding: "64px", display: "flex", justifyContent: "space-between"}}>
           
-        <label>
-          Location Name:
-          <input type="text" style={{border: "0px 0px 0px 0px"}} type="text" value={this.state.locationName} onChange={this.handleNameChange} />
-        </label>
-        <label>
-          Latitude:
-          <input type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />
-        </label>
-        <label>
-          Longitude:
-          <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
-        </label>
-        <button style={{backgroundColor:'#008CBA',borderRadius:'6px'}} onClick={this.handleSubmit}>Save</button>
+        <div style={{margin: "16px"}}>
+          <input placeholder="Location Name" type="text" type="text" value={this.state.locationName} onChange={this.handleNameChange} />
+        </div>
+        <div style={{margin: "16px"}}>
+          <input placeholder="Latitude" type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />
+        </div>
+        <div style={{margin: "16px"}}>
+          <input placeholder="Longitude" type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
+        </div>
+        <button style={{backgroundColor:'#343A40', color: "white", borderRadius:'6px', width: "40%", margin: "0 auto"}} onClick={this.handleSubmit}>Save</button>
       {/* </form> */}
       
       </div>

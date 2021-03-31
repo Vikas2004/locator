@@ -56,7 +56,7 @@ getInfo(val){
 }
 
   getLocation(){
-    this.search = ""
+    this.search.value = ""
     var url = BASE_URL
       axios.get(url).then(res => {console.log(res, "---get response is here----")
     this.setState({

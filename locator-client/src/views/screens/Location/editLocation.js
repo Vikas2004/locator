@@ -3,6 +3,7 @@ import './location';
 import React, {Component} from 'react'
 import axios from 'axios'
 import Header from '../../components/Header'
+import { ToastContainer, toast } from 'react-toastify';
 import Footer from '../../components/Footer'
 import { useParams } from 'react-router';
 import  { BASE_URL }  from '../../../constants'
@@ -31,6 +32,7 @@ export default class EditLocation extends Component {
     console.log(BASE_URL ,"---url is here---")
     axios.get(BASE_URL + search)
     .then(res => {
+      console.log(res,"--respinse")
       this.setState({
         locationName: res.data.locationName,
         latitude: res.data.latitude,
@@ -58,7 +60,11 @@ export default class EditLocation extends Component {
     this.setState({longitude: event.target.value});
   }
 
+
+ 
+
    handleSubmit(){
+
     const headers = {
       'content-type': 'application/x-www-form-urlencoded',
     }
@@ -82,26 +88,31 @@ export default class EditLocation extends Component {
 
 
   render(){
+    console.log(this.state.locationName,"--loc an=e jew")
     return (
       <div>
         <Header/>
-        <div style={{display: "flex", alignItems: "center", background: "white", height: "100vh"}}>
+        <div style={{display: "flex", flexDirection:"column", alignItems: "center", background: "white", height: "100vh", justifyContent: "center"}}>
         {/* <form> */}
-        <label>
-          Location Name:
-          <input type="text" value={this.state.locationName} onChange={this.handleNameChange} />
-        </label>
-        <label>
-          Latitude:
-          <input type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />
-        </label>
-        <label>
-          Longitude:
-          <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
-        </label>
-        <button type="submit" value="Submit" onClick={() => {this.handleSubmit()}}/>
-      {/* </form> */}
+        <ToastContainer />
+        <h4>Edit Location</h4>
+        <div class="card shadow mb-5 bg-white rounded" style={{padding: "64px", display: "flex", justifyContent: "space-between"}}>
+          
+        <div style={{margin: "16px"}}>
+          <input placeholder="Location Name" type="text" type="text" value={this.state.locationName} onChange={this.handleNameChange} />
         </div>
+        <div style={{margin: "16px"}}>
+          <input placeholder="Latitude" type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />
+        </div>
+        <div style={{margin: "16px"}}>
+          <input placeholder="Longitude" type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
+        </div>
+        <button style={{backgroundColor:'#343A40', color: "white", borderRadius:'6px', width: "40%", margin: "0 auto"}} onClick={this.handleSubmit}>Save</button>
+      {/* </form> */}
+      
+      </div>
+        </div>
+        
         
         <Footer />
       </div>

@@ -6,7 +6,7 @@ import logo from '../../../../src/Favicon.png'
 function Header() {
   return (
     <Navbar bg="dark" variant="dark" class="Header">
-    <Navbar.Brand href="#home">
+    <Navbar.Brand href="/">
       <img
         alt=""
         src={logo}
