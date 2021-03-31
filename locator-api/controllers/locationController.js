@@ -72,6 +72,7 @@ exports.findOne = (req, res) => {
 }
 
 exports.update = (req, res) => {
+    console.log("update")
     if(!req.body) {
         return res.status(400).send({
             message: "Location content can not be empty"
