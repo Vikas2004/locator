@@ -2,6 +2,8 @@
 import './location';
 import React, {Component} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearchLocation, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 import Header from '../../components/Header'
@@ -40,14 +42,21 @@ getInfo(val){
   this.state.locations.forEach(location => {
     if(location.locationName === val){
       console.log(location.locationName,"matches")
-      const url = `http:localhost:3001/location/${location._id}`
-      axios.get(url).then(res => {console.log(res,
-        "==response is here-")}).catch(e=>console.log(e,"---error is here---"))
+      const url = BASE_URL + location._id
+      axios.get(url).then(res => { 
+        console.log(res,"---response is here---")
+      //   this.setState({
+      //   locations: res.data
+      // })
+      this.setState({locations: [res.data]})
+    console.log(this.state.locations,"---locations are here---")
+    }).catch(e=>console.log(e,"---error is here---"))
     }
   })
 }
 
   getLocation(){
+    this.search = ""
     var url = BASE_URL
       axios.get(url).then(res => {console.log(res, "---get response is here----")
     this.setState({
@@ -74,18 +83,21 @@ getInfo(val){
   <div>
         <Header/>
         <div style={{display: "flex", flexDirection:"column", justifyContent: "space-between",alignItems:"center", background: "white", height: "90vh"}}>  
-        <input
-          style={{marginTop: "16px", alignSelf: "flex-end", marginRight:"16px"}}
+        <div style={{marginTop: "16px", alignSelf: "flex-end", marginRight:"16px"}}>
+        <input 
           placeholder="Search"
           ref={input => this.search = input}
+          style={{marginRight: "10px"}}
           // onChange={this.handleInputChange}
         />
-        <button onClick={() => {this.handleInputChange()}}>Search</button>
-        <div>
+        <FontAwesomeIcon icon={faSearchLocation} style={{marginRight: "10px"}} onClick={() => {this.handleInputChange()}}>Search</FontAwesomeIcon>
+        <FontAwesomeIcon icon={faTimesCircle} style={{marginRight: "10px"}} onClick={() => {this.getLocation()}}>Clear</FontAwesomeIcon>
+        </div>
+        <div style={{width: "80%"}}>
         <ToastContainer  />
         {/* </div> */}
         <div style={{display:'flex', height:"70vh", marginTop:"3%" }}>
-        <TableView  locations={locations} deleteLoc={this.deleteLocation} />
+       <TableView  locations={locations} deleteLoc={this.deleteLocation} /> }
         </div>
         <a href="/locations/save">
          Add Location

@@ -5,7 +5,7 @@ import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useParams } from 'react-router';
-import  BASE_URL  from '../../../constants'
+import  { BASE_URL }  from '../../../constants'
 
 // import ColorBox from '../../components/ColorBox'
 
@@ -28,9 +28,15 @@ export default class EditLocation extends Component {
     const search = this.props.match.params.locationId;
     console.log(search,"--location id is here--")
     const url = `http:localhost:3001/location/${search}`
-    console.log(url,"---url is here---")
-    axios.get(url)
-    .then(res => console.log(res,"---response is here--"))
+    console.log(BASE_URL ,"---url is here---")
+    axios.get(BASE_URL + search)
+    .then(res => {
+      this.setState({
+        locationName: res.data.locationName,
+        latitude: res.data.latitude,
+        longitude: res.data.longitude
+      })
+    })
     .catch(e=> {console.log(e,"--error ishere---")})
 
   }
@@ -62,8 +68,10 @@ export default class EditLocation extends Component {
       longitude: this.state.longitude
     }
     console.log(body,"--body is here--")
-    axios.put(BASE_URL, body).then(response => {
+    const search = this.props.match.params.locationId;
+    axios.put(BASE_URL + search, body).then(response => {
       console.log(response,"----response is here---");
+      window.location.href="/locations"
     })
     .catch(error => {
       console.log(error,"---error is here---");
