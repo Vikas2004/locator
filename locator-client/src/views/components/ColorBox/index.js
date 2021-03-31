@@ -1,15 +1,12 @@
 import React , {Component} from 'react'
 import './color.css'
 
-class ColorBox extends Component{
-    render(){
+function ColorBox(props){
+    
         return(
-            <div style={this.props.style} className="Color"> 
-            </div>
-            
+            <div style={props.style} onClick={props.clickOne} className="Color"> 
+            </div>     
         );
-    }
-   
-}
+        }
 
 export default ColorBox;
