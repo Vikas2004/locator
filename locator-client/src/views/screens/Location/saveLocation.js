@@ -5,6 +5,7 @@ import axios from 'axios'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { withRouter, useHistory, Redirect, Link } from "react-router-dom"
+import Card from 'react-bootstrap/Card'
 
 class SaveLocation extends Component {
  
@@ -57,11 +58,19 @@ class SaveLocation extends Component {
 }
 
   render(){
+    
     return (
       <div>
         <Header/>
         <div style={{display: "flex", flexDirection:"column", alignItems: "center", background: "white", height: "100vh"}}>
         {/* <form> */}
+        <div class="card shadow p-3 mb-5 bg-white rounded" style={ {left:'10%',top: '40%',transform: 'translate(-50%, -50%)',paddingTop: "10vh",
+        paddingBottom: "10vh",
+        paddingRight: "10vw",
+        paddingLeft: "10vw",
+        
+        }}>
+          
         <label>
           Location Name:
           <input style={{border: "0px 0px 0px 0px"}} type="text" value={this.state.locationName} onChange={this.handleNameChange} />
@@ -74,9 +83,12 @@ class SaveLocation extends Component {
           Longitude:
           <input type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
         </label>
-        <button  onClick={this.handleSubmit}>Save</button>
+        <button style={{backgroundColor:'#008CBA',borderRadius:'6px'}} onClick={this.handleSubmit}>Save</button>
       {/* </form> */}
+      
+      </div>
         </div>
+        
         
         <Footer />
       </div>
