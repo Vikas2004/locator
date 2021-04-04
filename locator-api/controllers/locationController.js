@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
 
 exports.findOne = (req, res) => {
     console.log(req.params.locationId,"--location id is here--")
-    LocationSchema.findById(req.params.locationId)
+    LocationSchema.findById(req.params._id)
     .then(location => {
         if(!location) {
             return res.status(404).send({
@@ -72,18 +72,15 @@ exports.findOne = (req, res) => {
 }
 
 exports.update = (req, res) => {
-   
     if(!req.body) {
         return res.status(400).send({
-            message: "Location content can not be empty"
+            message: "Product content can not be empty"
         });
     }
 
-    // Find and update Location with the request body
-    LocationSchema.findByIdAndUpdate(req.params.locationId, {
+    // Find and update product with the request body
+    LocationSchema.findByIdAndUpdate(req.params.productId, {
         locationName : req.body.locationName,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude
     }, {new: true})
     .then(location => {
         if(!location) {
@@ -95,7 +92,7 @@ exports.update = (req, res) => {
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Location not found with id " + req.params.locationId
+                message: "Product not found with id " + req.params.locationId
             });                
         }
         return res.status(500).send({
