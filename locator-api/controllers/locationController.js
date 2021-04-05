@@ -79,12 +79,11 @@ exports.update = (req, res) => {
             message: "Location content can not be empty"
         });
     }
-
+const {locationName, latitude, longitude} = req.body
     // Find and update Location with the request body
-    LocationSchema.findByIdAndUpdate(req.params.locationId, {
-        locationName : req.body.locationName,
-    }, {new: true})
+    LocationSchema.findOneAndUpdate(req.params.locationId, req.body)
     .then(location => {
+        console.log(location,"---location is here---")
         if(!location) {
             return res.status(404).send({
                 message: "LocationId not found with id " + req.params.locationId
@@ -94,7 +93,7 @@ exports.update = (req, res) => {
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Product not found with id " + req.params.locationId
+                message: "Location not found with id " + req.params.locationId
             });                
         }
         return res.status(500).send({

@@ -55,7 +55,7 @@ export default class EditLocation extends Component {
     this.setState({longitude: event.target.value});
   }
 
-   handleSubmit(){
+  handleSubmit(){
 
     const headers = {
       'content-type': 'application/x-www-form-urlencoded',
@@ -65,9 +65,11 @@ export default class EditLocation extends Component {
       latitude: this.state.latitude,
       longitude: this.state.longitude
     }
+    console.log(body,"--body is here--")
     const search = this.props.match.params.locationId;
     axios.put(BASE_URL + search, body).then(response => {
-      window.location.href="/locations"
+      console.log(response,"----response is here---");
+      // window.location.href="/locations"
     })
     .catch(error => {
       console.log(error,"---error is here---");
@@ -78,7 +80,6 @@ export default class EditLocation extends Component {
 
 
   render(){
-    console.log(this.state.locationName,"--loc an=e jew")
     return (
       <div>
         <Header/>

@@ -8,6 +8,8 @@ import axios from 'axios'
 import { BASE_URL } from "../../../constants"
 //import Speech from 'react-speech';
 import Speech from 'speak-tts'
+import { toast, ToastContainer } from 'react-toastify';
+var geolocation = require('geolocation')
 
 
 export default class Treasure extends React.Component {
@@ -16,13 +18,35 @@ export default class Treasure extends React.Component {
     super(props)
     this.state = {
     locations: [],
-    randomLoc: {}
+    randomLoc: {},
+    currentLoc: {}
     }
     this.clickOne = this.clickOne.bind(this)
+    this.validateLocation= this.validateLocation.bind(this)
   }
 
   componentDidMount(){
     this.getLocation()
+  }
+
+  validateLocation = async () => {
+    console.log("---validate hits---")
+   var cl
+    const {randomLoc, currentLoc} = this.state
+    console.log(randomLoc,"---random loc is here1---")
+   await geolocation.getCurrentPosition((err, position) => {
+     if(position) console.log(position,"---position is here---")
+     this.setState({
+       currentLoc: position["coords"]
+     })
+     if((randomLoc.latitude === currentLoc.latitude) && (randomLoc.longitude === currentLoc.longitude)){
+         toast.success("You have reached the location successfully")
+     }else{
+       toast.error("Locations did not match")
+     }
+    }
+ )
+   
   }
 
   getLocation(){
@@ -57,13 +81,14 @@ export default class Treasure extends React.Component {
 
 
   render(){
-    console.log(this.state.randomLoc.locationName,"---locations name hjsdfnjs")
+    console.log(this.state.currentLoc, "current loc is here---")
     return (
       <div>
+        <ToastContainer />
         <Header/>
         <div className="treasureSection">
-        <ColorBox style={{backgroundColor: 'gray'}} randomLoc={this.state.randomLoc.locationName} clickOne={this.clickOne} />
-        <ColorBox style={{backgroundColor: 'yellow'}} />
+        <ColorBox style={{backgroundColor: 'gray', display: "flex", flexDirection: "column"}} randomLoc={this.state.randomLoc} clickOne={this.clickOne} />
+        <ColorBox style={{backgroundColor: 'yellow',  display: "flex", flexDirection: "column"}} randomLoc={this.state.currentLoc} clickOne={this.validateLocation}  />
         <a href="/locations/">
           Go to Locations
         </a>

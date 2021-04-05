@@ -16,14 +16,13 @@ random: props.randomLoc
  }
 render(){
     const {style, clickOne} = this.props
-    console.log(this.state.random,"---random is here---")
-        return(
-            <div style={style} onClick={clickOne}  className="Color">
-              <label>{this.state.random}</label>
-        {/* <label>{randomLoc.latitdue}</label>
-        <label>{randomLoc.longitude}</label> */} 
-            </div>     
-        );
+    return(
+        <div style={style} onClick={clickOne}  className="Color">
+        <label>{this.state.random.locationName || ""}</label>
+        <label>{this.state.random.latitude}</label>
+       <label>{this.state.random.longitude}</label>
+      </div>   
+    )
         }
     
     }

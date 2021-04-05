@@ -38,7 +38,7 @@ import { withRouter } from "react-router-dom"
       } 
   }
 getInfo(val){
-  console.log(val,"---value is here000")
+  console.log(this.state.locations,"---value is here000")
   this.state.locations.forEach(location => {
     if(location.locationName === val){
       console.log(location.locationName,"matches")
