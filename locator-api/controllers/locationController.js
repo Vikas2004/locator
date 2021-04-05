@@ -53,7 +53,7 @@ exports.findAll = (req, res) => {
 
 exports.findOne = (req, res) => {
     console.log(req.params.locationId,"--location id is here--")
-    LocationSchema.findById(req.params._id)
+    LocationSchema.findById(req.params.locationId,"---cool")
     .then(location => {
         if(!location) {
             return res.status(404).send({
