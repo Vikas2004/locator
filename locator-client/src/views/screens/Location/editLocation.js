@@ -69,7 +69,7 @@ export default class EditLocation extends Component {
     const search = this.props.match.params.locationId;
     axios.put(BASE_URL + search, body).then(response => {
       console.log(response,"----response is here---");
-      // window.location.href="/locations"
+       window.location.href="/locations"
     })
     .catch(error => {
       console.log(error,"---error is here---");

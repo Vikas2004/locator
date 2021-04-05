@@ -79,11 +79,14 @@ exports.update = (req, res) => {
             message: "Location content can not be empty"
         });
     }
-const {locationName, latitude, longitude} = req.body
+
     // Find and update Location with the request body
-    LocationSchema.findOneAndUpdate(req.params.locationId, req.body)
+    LocationSchema.findByIdAndUpdate(req.params.locationId, {
+        locationName : req.body.locationName,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude
+    }, {new: true})
     .then(location => {
-        console.log(location,"---location is here---")
         if(!location) {
             return res.status(404).send({
                 message: "LocationId not found with id " + req.params.locationId
@@ -101,6 +104,7 @@ const {locationName, latitude, longitude} = req.body
         });
     });
 }
+
 
 exports.delete = (req, res) => {
     LocationSchema.findByIdAndRemove(req.params.locationId)
