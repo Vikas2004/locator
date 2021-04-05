@@ -3,6 +3,8 @@
 const express=require('express')
 const app=express.Router()
 var LocationSchema = require('../models/location')
+let http = require('http');
+let fs = require('fs');
 
 
 // let bodyParser = require('body-parser');
@@ -74,12 +76,12 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     if(!req.body) {
         return res.status(400).send({
-            message: "Product content can not be empty"
+            message: "Location content can not be empty"
         });
     }
 
-    // Find and update product with the request body
-    LocationSchema.findByIdAndUpdate(req.params.productId, {
+    // Find and update Location with the request body
+    LocationSchema.findByIdAndUpdate(req.params.locationId, {
         locationName : req.body.locationName,
     }, {new: true})
     .then(location => {

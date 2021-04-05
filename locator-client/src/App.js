@@ -17,6 +17,7 @@ function App() {
       <Route path="/" component={Treasure} exact />
       <Route path="/locations/" component={Location} exact/>
       <Route path="/locations/vikas" component={vikas} exact/>
+      <Route path="/locations/about" component={About} exact />
       <Route path="/locations/save" component={SaveLocation} exact />
       <Route path="/locations/about" component={About} exact />
       <Route path='/locations/edit/:locationId' component={EditLocation} exact />
