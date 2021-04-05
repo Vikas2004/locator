@@ -27,9 +27,10 @@ export default class EditLocation extends Component {
 
   componentDidMount(){
     const search = this.props.match.params.locationId;
+    console.log(search,"---search is here---")
     axios.get(BASE_URL + search)
     .then(res => {
-      console.log(res,"--respinse")
+      console.log(res.data,"---dta should be here---")
       this.setState({
         locationName: res.data.locationName,
         latitude: res.data.latitude,
@@ -41,24 +42,18 @@ export default class EditLocation extends Component {
   }
 
   handleNameChange(event) {
-    console.log(event,"--event is here--")
     this.setState({locationName: event.target.value});
   }
 
   
   handleLatitudeChange(event) {
-    console.log(event,"--event is here--")
     this.setState({latitude: event.target.value});
   }
 
     
   handleLongitudeChange(event) {
-    console.log(event,"--event is here--")
     this.setState({longitude: event.target.value});
   }
-
-
- 
 
    handleSubmit(){
 
@@ -70,10 +65,8 @@ export default class EditLocation extends Component {
       latitude: this.state.latitude,
       longitude: this.state.longitude
     }
-    console.log(body,"--body is here--")
     const search = this.props.match.params.locationId;
     axios.put(BASE_URL + search, body).then(response => {
-      console.log(response,"----response is here---");
       window.location.href="/locations"
     })
     .catch(error => {
