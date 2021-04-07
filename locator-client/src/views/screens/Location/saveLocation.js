@@ -81,8 +81,7 @@ class SaveLocation extends Component {
 
 }
 
-  render(){
-    
+  render(){ 
     return (
       <div>
         <Header/>
@@ -105,6 +104,9 @@ class SaveLocation extends Component {
       {/* </form> */}
       
       </div>
+      <a href="/locations/">
+          Go to Locations
+        </a>
         </div>
         
         

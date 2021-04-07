@@ -11,7 +11,7 @@ random: ""
  componentWillReceiveProps(props){
      console.log(props,"---props are here---")
      this.setState({
-random: props.randomLoc
+     random: props.randomLoc
      })
  }
 render(){

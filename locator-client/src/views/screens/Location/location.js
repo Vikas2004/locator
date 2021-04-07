@@ -99,9 +99,6 @@ getInfo(val){
         <div style={{display:'flex', height:"70vh", marginTop:"3%" }}>
        <TableView  locations={locations} deleteLoc={this.deleteLocation} /> }
         </div>
-        <a href="/locations/save">
-         Add Location
-        </a>
       </div>
                 
       </div>

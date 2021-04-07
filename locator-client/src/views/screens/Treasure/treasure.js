@@ -12,6 +12,8 @@ import { toast, ToastContainer } from 'react-toastify';
 var geolocation = require('geolocation')
 
 
+
+
 export default class Treasure extends React.Component {
   
   constructor(props){
@@ -19,35 +21,39 @@ export default class Treasure extends React.Component {
     this.state = {
     locations: [],
     randomLoc: {},
-    currentLoc: {}
+    currentLocLat: "",
+    currentLocLon: ""
     }
     this.clickOne = this.clickOne.bind(this)
     this.validateLocation= this.validateLocation.bind(this)
   }
 
+
   componentDidMount(){
     this.getLocation()
   }
 
-  validateLocation = async () => {
-    console.log("---validate hits---")
-   var cl
+  validateLocation =  (setInterval(() => {
     const {randomLoc, currentLoc} = this.state
-    console.log(randomLoc,"---random loc is here1---")
-   await geolocation.getCurrentPosition((err, position) => {
-     if(position) console.log(position,"---position is here---")
-     this.setState({
-       currentLoc: position["coords"]
-     })
-     if((randomLoc.latitude === currentLoc.latitude) && (randomLoc.longitude === currentLoc.longitude)){
-         toast.success("You have reached the location successfully")
+    console.log(randomLoc,"---random loc is here---")
+   geolocation.getCurrentPosition((err, position) => {
+     if(position) {
+     console.log(String(position["coords"].latitude), randomLoc.latitude, String(position["coords"].longitude), randomLoc.longitude, "---position i shere---")
+     if(parseFloat(String(position["coords"].latitude)) == parseFloat(randomLoc.latitude) && parseFloat(String(position["coords"].longitude)) == parseFloat(randomLoc.longitude)){
+       toast("You have reached the location")
+       console.log("Matched")
      }else{
-       toast.error("Locations did not match")
+      toast("Locations Did not match")
+      console.log("not matched")
      }
     }
- )
-   
-  }
+    //  if(position)
+     this.setState({
+       currentLocLat: position["coords"].latitude,
+       currentLocLon: position["coords"].longitude
+     })
+    })
+  }, 30 * 1000))
 
   getLocation(){
     var url = BASE_URL
@@ -61,14 +67,12 @@ export default class Treasure extends React.Component {
 
   clickOne = () => {
     const speech = new Speech()
-    console.log("---click one hits---")
     const {locations} = this.state
     var randomItem = locations[Math.floor(Math.random()*locations.length)];
     // this.state.randomLoc=randomItem
     this.setState({
       randomLoc: randomItem
     })
-    console.log(this.state.randomLoc,"---random loc is here")
     speech.speak({
       text: randomItem.locationName,
   }).then(() => {
@@ -81,16 +85,17 @@ export default class Treasure extends React.Component {
 
 
   render(){
-    console.log(this.state.currentLoc, "current loc is here---")
+    // console.log(this.state.currentLoc.latitude, this.state.currentLoc.longitude, "current loc is here---")
+    const currentLoc = {latitude: this.state.currentLocLat, longitude: this.state.currentLocLon}
     return (
       <div>
         <ToastContainer />
         <Header/>
         <div className="treasureSection">
         <ColorBox style={{backgroundColor: 'gray', display: "flex", flexDirection: "column"}} randomLoc={this.state.randomLoc} clickOne={this.clickOne} />
-        <ColorBox style={{backgroundColor: 'yellow',  display: "flex", flexDirection: "column"}} randomLoc={this.state.currentLoc} clickOne={this.validateLocation}  />
-        <a href="/locations/">
-          Go to Locations
+        <ColorBox style={{backgroundColor: 'yellow',  display: "flex", flexDirection: "column"}} randomLoc={currentLoc} clickOne={this.validateLocation}  />
+        <a href="/locations/save">
+         Add Location
         </a>
         </div>
         <Footer />
