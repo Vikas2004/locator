@@ -33,7 +33,7 @@ export default class Treasure extends React.Component {
     this.getLocation()
   }
 
-  validateLocation =  (setInterval(() => {
+  validateLocation =  () => {
     const {randomLoc, currentLoc} = this.state
     console.log(randomLoc,"---random loc is here---")
    geolocation.getCurrentPosition((err, position) => {
@@ -53,7 +53,7 @@ export default class Treasure extends React.Component {
        currentLocLon: position["coords"].longitude
      })
     })
-  }, 30 * 1000))
+  }
 
   getLocation(){
     var url = BASE_URL
