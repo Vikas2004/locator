@@ -92,7 +92,7 @@ class SaveLocation extends Component {
         <div class="card shadow mb-5 bg-white rounded" style={{padding: "64px", display: "flex", justifyContent: "space-between"}}>
           
         <div style={{margin: "16px"}}>
-          <input placeholder="Location Name" type="text" type="text" value={this.state.locationName} onChange={this.handleNameChange} />
+          <input  placeholder="Location Name" type="text"  value={this.state.locationName} onChange={this.handleNameChange} />
         </div>
         <div style={{margin: "16px"}}>
           <input placeholder="Latitude" type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />

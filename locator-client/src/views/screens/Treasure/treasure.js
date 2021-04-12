@@ -34,6 +34,7 @@ export default class Treasure extends React.Component {
   }
 
   validateLocation =  () => {
+    const speech = new Speech()
     const {randomLoc, currentLoc} = this.state
     console.log(randomLoc,"---random loc is here---")
    geolocation.getCurrentPosition((err, position) => {
@@ -42,9 +43,23 @@ export default class Treasure extends React.Component {
      if(parseFloat(String(position["coords"].latitude)) == parseFloat(randomLoc.latitude) && parseFloat(String(position["coords"].longitude)) == parseFloat(randomLoc.longitude)){
        toast("You have reached the location")
        console.log("Matched")
+       speech.speak({
+        text: "Hoorayyy!! you found the treasure",
+    }).then(() => {
+        console.log("Success !")
+    }).catch(e => {
+        console.error("An error occurred :", e)
+    })
      }else{
       toast("Locations Did not match")
       console.log("not matched")
+      speech.speak({
+        text: "Ah Ah, Treasure is not here",
+    }).then(() => {
+        console.log("Success !")
+    }).catch(e => {
+        console.error("An error occurred :", e)
+    })
      }
     }
     //  if(position)
@@ -74,7 +89,7 @@ export default class Treasure extends React.Component {
       randomLoc: randomItem
     })
     speech.speak({
-      text: randomItem.locationName,
+      text: "Time for the hunt, your treasure has been created",
   }).then(() => {
       console.log("Success !")
   }).catch(e => {
@@ -92,7 +107,7 @@ export default class Treasure extends React.Component {
         <ToastContainer />
         <Header/>
         <div className="treasureSection">
-        <ColorBox style={{backgroundColor: 'gray', display: "flex", flexDirection: "column"}} randomLoc={this.state.randomLoc} clickOne={this.clickOne} />
+        <div style={{backgroundColor: 'gray', display: "flex", flexDirection: "column"}} className="Color" onClick={this.clickOne}>Click Here to start the Game</div>
         <ColorBox style={{backgroundColor: 'yellow',  display: "flex", flexDirection: "column"}} randomLoc={currentLoc} clickOne={this.validateLocation}  />
         <a href="/locations/save">
          Add Location

@@ -5,7 +5,7 @@ class ColorBox extends Component{
  constructor(props){
      super(props)
      this.state = {
-random: ""
+     random: ""
      }
  }
  componentWillReceiveProps(props){
