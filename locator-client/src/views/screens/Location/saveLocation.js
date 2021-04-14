@@ -31,20 +31,25 @@ class SaveLocation extends Component {
   }
 
   handleNameChange(event) {
-    console.log(event,"--event is here--")
-    this.setState({locationName: event.target.value});
+    let value = event.target.value
+    value = value.replace(/[^A-Za-z]/ig, '')
+    this.setState({locationName: value});
   }
 
   
-  handleLatitudeChange(event) {
-    console.log(event,"--event is here--")
-    this.setState({latitude: event.target.value});
+  handleLatitudeChange(e) {
+    const re = /^\d*\.?\d*$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+      this.setState({latitude: e.target.value})
+   }
   }
 
     
   handleLongitudeChange(event) {
-    console.log(event,"--event is here--")
-    this.setState({longitude: event.target.value});
+    const re = /^\d*\.?\d*$/;
+    if (event.target.value === '' || re.test(event.target.value)) {
+      this.setState({longitude: event.target.value})
+   }
   }
 
    handleSubmit(){
@@ -95,14 +100,12 @@ class SaveLocation extends Component {
           <input  placeholder="Location Name" type="text"  value={this.state.locationName} onChange={this.handleNameChange} />
         </div>
         <div style={{margin: "16px"}}>
-          <input placeholder="Latitude" type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />
+          <input  placeholder="Latitude" type="text" value={this.state.latitude} onChange={this.handleLatitudeChange} />
         </div>
         <div style={{margin: "16px"}}>
           <input placeholder="Longitude" type="text" value={this.state.longitude} onChange={this.handleLongitudeChange} />
         </div>
-        <button style={{backgroundColor:'#343A40', color: "white", borderRadius:'6px', width: "40%", margin: "0 auto"}} onClick={this.handleSubmit}>Save</button>
-      {/* </form> */}
-      
+        <button style={{backgroundColor:'#343A40', color: "white", borderRadius:'6px', width: "40%", margin: "0 auto"}} onClick={this.handleSubmit}>Save</button>  
       </div>
       <a href="/locations/">
           Go to Locations

@@ -108,7 +108,9 @@ export default class Treasure extends React.Component {
         <Header/>
         <div className="treasureSection">
         <div style={{backgroundColor: 'gray', display: "flex", flexDirection: "column"}} className="Color" onClick={this.clickOne}>Click Here to start the Game</div>
-        <ColorBox style={{backgroundColor: 'yellow',  display: "flex", flexDirection: "column"}} randomLoc={currentLoc} clickOne={this.validateLocation}  />
+        <div style={{backgroundColor: 'yellow', display: "flex", flexDirection: "column"}} className="Color" onClick={this.validateLocation}>Click Here to check treasure</div>
+        {/* <ColorBox style={{backgroundColor: 'yellow',  display: "flex", flexDirection: "column"}} randomLoc={currentLoc} clickOne={this.validateLocation}  /> */}
+
         <a href="/locations/save">
          Add Location
         </a>
