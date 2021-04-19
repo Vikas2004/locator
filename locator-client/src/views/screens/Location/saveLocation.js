@@ -76,7 +76,7 @@ class SaveLocation extends Component {
         }
       }else{
         console.log("Location name should be string")
-        toast.warning("Location name should be string")
+        toast.warning("you can use alphabets only for location name")
       } 
     }else{
       console.log("Please fill all fields")
